@@ -25,7 +25,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import com.activeviam.lx.cfg.security.SecurityConfig;
 
 /**
- * Initializer of the Web Application.
+ * Spring initializer of the Web Application.
  * 
  * @author ActiveViam
  *

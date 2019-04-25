@@ -30,16 +30,17 @@ public class TruncateTables {
 	    	try(Statement stmt = conn.createStatement()) {
 	
 			    stmt.executeUpdate("TRUNCATE TABLE Products");
-				LOG.info("Table 'Products' truncated successfully.");
+				LOG.info("Table 'PRODUCTS' truncated successfully.");
 			    stmt.executeUpdate("TRUNCATE TABLE Trades");
-				LOG.info("Table 'Trades' truncated successfully.");
+				LOG.info("Table 'TRADES' truncated successfully.");
 			    stmt.executeUpdate("TRUNCATE TABLE Risks");
-				LOG.info("Table 'Risks' truncated successfully.");
+				LOG.info("Table 'RISKS' truncated successfully.");
 				
 				conn.commit();
 	
 		    } catch(SQLException se) { 
-		        //Handle errors for JDBC 
+		        //Handle errors for JDBC
+		    	conn.rollback();
 		        se.printStackTrace(); 
 		    }
 	    }
