@@ -146,7 +146,7 @@ public class ActivePivotManagerConfig implements IActivePivotManagerDescriptionC
 	 * @param context The context with which to build the calculations.
 	 */
 	public static void coPPerCalculations(BuildingContext context) {
-		ActivePivotManagerConfig.someAggregatedMeasures(context).publish();
+		ActivePivotManagerConfig.aggregations(context).publish();
 	}
 
 	
@@ -157,7 +157,7 @@ public class ActivePivotManagerConfig implements IActivePivotManagerDescriptionC
 	 *
 	 * @return The Dataset of the aggregated measures.
 	 */		
-	protected static Dataset someAggregatedMeasures(final BuildingContext context) {
+	protected static Dataset aggregations(final BuildingContext context) {
 		
 		return context.createDatasetFromFacts()
 			.agg(
@@ -165,7 +165,7 @@ public class ActivePivotManagerConfig implements IActivePivotManagerDescriptionC
 				sum("ProductBaseMtm").as("PnL").withFormatter(DOUBLE_FORMAT),
 				sum("PnlDelta").as("PnlDelta").withFormatter(DOUBLE_FORMAT),
 				sum("PnlVega").as("PnlVega").withFormatter(DOUBLE_FORMAT),
-				sum("Delta").as("Delta").withFormatter(DOUBLE_FORMAT),
+				sum("DeltaX").as("Delta").withFormatter(DOUBLE_FORMAT),
 				sum("Vega").as("Vega").withFormatter(DOUBLE_FORMAT)
 			);
 

@@ -82,7 +82,7 @@ public class DatastoreDescriptionConfig implements IDatastoreDescriptionConfig {
 		return new StoreDescriptionBuilder().withStoreName("Risks")
 				.withField("TradeId", LONG).asKeyField()
 				.withField("Pnl", DOUBLE)
-				.withField("Delta", DOUBLE)
+				.withField("DeltaX", DOUBLE)
 				.withField("PnlDelta", DOUBLE)
 				.withField("Gamma", DOUBLE)
 				.withField("Vega", DOUBLE)

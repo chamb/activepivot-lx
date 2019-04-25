@@ -25,59 +25,62 @@ public class CreateTables {
 	public static void main(String[] args) throws Exception {
 
 		DatabaseConnection connection = new DatabaseConnection();
-	    try(Connection conn = connection.getConnection();
-	    	Statement stmt = conn.createStatement()) {
+	    try(Connection conn = connection.getConnection()) {
+	    	try(Statement stmt = conn.createStatement()) {
 
-			stmt.executeUpdate("CREATE TABLE PRODUCTS (\n" + 
-					"  Id INTEGER not NULL,\n" + 
-					"  ProductName VARCHAR(255),\n" + 
-					"  ProductType VARCHAR(255), \n" + 
-					"  UnderlierCode VARCHAR(255),\n" + 
-					"  UnderlierCurrency VARCHAR(255),\n" + 
-					"  UnderlierType VARCHAR(255),\n" + 
-					"  UnderlierValue DOUBLE,\n" + 
-					"  ProductBaseMtm DOUBLE,\n" + 
-					"  BumpedMtmUp DOUBLE,\n" + 
-					"  BumpedMtmDown DOUBLE,\n" + 
-					"  Theta DOUBLE,\n" + 
-					"  Rho DOUBLE,\n" + 
-					"  PRIMARY KEY ( Id )\n" + 
-					")"
-			);
-			LOG.info("Table 'PRODUCTS' created successfully.");
+				stmt.executeUpdate("CREATE TABLE PRODUCTS (\n" + 
+						"  Id INTEGER not NULL,\n" + 
+						"  ProductName VARCHAR(255),\n" + 
+						"  ProductType VARCHAR(255), \n" + 
+						"  UnderlierCode VARCHAR(255),\n" + 
+						"  UnderlierCurrency VARCHAR(255),\n" + 
+						"  UnderlierType VARCHAR(255),\n" + 
+						"  UnderlierValue DOUBLE,\n" + 
+						"  ProductBaseMtm DOUBLE,\n" + 
+						"  BumpedMtmUp DOUBLE,\n" + 
+						"  BumpedMtmDown DOUBLE,\n" + 
+						"  Theta DOUBLE,\n" + 
+						"  Rho DOUBLE,\n" + 
+						"  PRIMARY KEY ( Id )\n" + 
+						")"
+				);
+				LOG.info("Table 'PRODUCTS' created successfully.");
+				
+				stmt.executeUpdate("CREATE TABLE TRADES (\n" + 
+						"  Id BIGINT not NULL,\n" + 
+						"  ProductId INTEGER,\n" + 
+						"  ProductQtyMultiplier DOUBLE,\n" + 
+						"  Desk VARCHAR(255),\n" + 
+						"  Book INTEGER,\n" + 
+						"  Trader VARCHAR(255),\n" + 
+						"  Counterparty VARCHAR(255),\n" + 
+						"  Date DATE,\n" + 
+						"  Status VARCHAR(255),\n" + 
+						"  IsSimulated VARCHAR(255),\n" + 
+						"  PRIMARY KEY ( Id )\n" + 
+						")"
+				);
+				LOG.info("Table 'TRADES' created successfully.");
+				
+				String createRiskTable = "CREATE TABLE RISKS (" + 
+						"TradeId BIGINT not NULL, " + 
+						"Pnl DOUBLE, " + 
+						"DeltaX DOUBLE, " + 
+						"PnlDelta DOUBLE, " + 
+						"Gamma DOUBLE, " + 
+						"Vega DOUBLE, " + 
+						"PnlVega DOUBLE)";
+				stmt.executeUpdate(createRiskTable);
+				LOG.info("Table 'RISKS' created successfully.");
+				
+				conn.commit();
 			
-			stmt.executeUpdate("CREATE TABLE TRADES (\n" + 
-					"  Id BIGINT not NULL,\n" + 
-					"  ProductId INTEGER,\n" + 
-					"  ProductQtyMultiplier DOUBLE,\n" + 
-					"  Desk VARCHAR(255),\n" + 
-					"  Book INTEGER,\n" + 
-					"  Trader VARCHAR(255),\n" + 
-					"  Counterparty VARCHAR(255),\n" + 
-					"  Date DATE,\n" + 
-					"  Status VARCHAR(255),\n" + 
-					"  IsSimulated VARCHAR(255),\n" + 
-					"  PRIMARY KEY ( Id )\n" + 
-					")"
-			);
-			LOG.info("Table 'TRADES' created successfully.");
-			
-			String createRiskTable = "CREATE TABLE RISKS (" + 
-					"TradeId BIGINT not NULL, " + 
-					"Pnl DOUBLE, " + 
-					"DeltaX DOUBLE, " + 
-					"PnlDelta DOUBLE, " + 
-					"Gamma DOUBLE, " + 
-					"Vega DOUBLE, " + 
-					"PnlVega DOUBLE)";
-			stmt.executeUpdate(createRiskTable);
-			LOG.info("Table 'RISKS' created successfully.");
-			
-			
-	     } catch(SQLException se) { 
-	        //Handle errors for JDBC 
-	        se.printStackTrace(); 
-	     }
+	    	} catch(SQLException se) { 
+	    		//Handle errors for JDBC
+	    		conn.rollback();
+	    		se.printStackTrace(); 
+	    	}
+	    }
 
 	}
 

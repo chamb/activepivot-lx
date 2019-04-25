@@ -26,21 +26,23 @@ public class TruncateTables {
 
 		DatabaseConnection connection = new DatabaseConnection();
 
-	    try(Connection conn = connection.getConnection();
-	    	Statement stmt = conn.createStatement()) {
-
-		    stmt.executeUpdate("TRUNCATE TABLE Products");
-			LOG.info("Table 'Products' truncated successfully.");
-		    stmt.executeUpdate("TRUNCATE TABLE Trades");
-			LOG.info("Table 'Trades' truncated successfully.");
-		    stmt.executeUpdate("TRUNCATE TABLE Risks");
-			LOG.info("Table 'Risks' truncated successfully.");
-		    
-	     } catch(SQLException se) { 
-	        //Handle errors for JDBC 
-	        se.printStackTrace(); 
-	     }
-
+	    try(Connection conn = connection.getConnection()) {
+	    	try(Statement stmt = conn.createStatement()) {
+	
+			    stmt.executeUpdate("TRUNCATE TABLE Products");
+				LOG.info("Table 'Products' truncated successfully.");
+			    stmt.executeUpdate("TRUNCATE TABLE Trades");
+				LOG.info("Table 'Trades' truncated successfully.");
+			    stmt.executeUpdate("TRUNCATE TABLE Risks");
+				LOG.info("Table 'Risks' truncated successfully.");
+				
+				conn.commit();
+	
+		    } catch(SQLException se) { 
+		        //Handle errors for JDBC 
+		        se.printStackTrace(); 
+		    }
+	    }
 	}
 
 }

@@ -42,7 +42,9 @@ public class DatabaseConnection {
 	 * @throws SQLException
 	 */
 	public Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(DB_URL,USER,PASS);
+		Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		conn.setAutoCommit(false);
+		return conn;
 	}
 	
 	public static void main(String[] args) throws Exception {

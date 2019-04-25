@@ -26,21 +26,23 @@ public class DropTables {
 
 		DatabaseConnection connection = new DatabaseConnection();
 
-	    try(Connection conn = connection.getConnection();
-	    	Statement stmt = conn.createStatement()) {
+	    try(Connection conn = connection.getConnection()) {
+	    	try(Statement stmt = conn.createStatement()) {
 
-		    stmt.executeUpdate("DROP TABLE PRODUCTS");
-			LOG.info("Table 'PRODUCTS' dropped successfully.");
-		    stmt.executeUpdate("DROP TABLE TRADES");
-			LOG.info("Table 'TRADES' dropped successfully.");
-		    stmt.executeUpdate("DROP TABLE RISKS");
-			LOG.info("Table 'RISKS' dropped successfully.");
-		    
-	     } catch(SQLException se) { 
-	        //Handle errors for JDBC 
-	        se.printStackTrace(); 
-	     }
-
+			    stmt.executeUpdate("DROP TABLE PRODUCTS");
+				LOG.info("Table 'PRODUCTS' dropped successfully.");
+			    stmt.executeUpdate("DROP TABLE TRADES");
+				LOG.info("Table 'TRADES' dropped successfully.");
+			    stmt.executeUpdate("DROP TABLE RISKS");
+				LOG.info("Table 'RISKS' dropped successfully.");
+				conn.commit();
+	
+		    } catch(SQLException se) { 
+		        //Handle errors for JDBC
+		    	conn.rollback();
+		        se.printStackTrace();
+		    }
+	    }
 	}
 
 }

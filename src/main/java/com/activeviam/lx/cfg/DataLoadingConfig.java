@@ -1,5 +1,5 @@
 /*
- * (C) ActiveViam 2018
+ * (C) ActiveViam 2019
  * ALL RIGHTS RESERVED. This material is the CONFIDENTIAL and PROPRIETARY
  * property of Quartet Financial Systems Limited. Any unauthorized use,
  * reproduction or transfer of this material is strictly prohibited
@@ -73,9 +73,9 @@ public class DataLoadingConfig {
 		);
 		 
 		// Register topics
-		jdbcSource.addTopic(new JDBCTopic("Products", "SELECT * from Products"));
-		jdbcSource.addTopic(new JDBCTopic("Trades", "SELECT * from Trades"));
-		jdbcSource.addTopic(new JDBCTopic("Risks", "SELECT * from Risks"));
+		jdbcSource.addTopic(new JDBCTopic("Products", "SELECT * from PRODUCTS"));
+		jdbcSource.addTopic(new JDBCTopic("Trades", "SELECT * from TRADES"));
+		jdbcSource.addTopic(new JDBCTopic("Risks", "SELECT * from RISKS"));
 		
 		return jdbcSource;
     }
