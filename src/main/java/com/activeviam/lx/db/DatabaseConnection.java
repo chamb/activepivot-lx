@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Create and populate a database.
+ * Create a database connection.
  * 
  * @author ActiveViam
  *
@@ -37,6 +37,10 @@ public class DatabaseConnection {
 		}
 	}
 	
+	/**
+	 * @return configured JDBC connection
+	 * @throws SQLException
+	 */
 	public Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(DB_URL,USER,PASS);
 	}

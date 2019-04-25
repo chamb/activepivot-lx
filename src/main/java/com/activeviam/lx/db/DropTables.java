@@ -17,10 +17,10 @@ import java.util.logging.Logger;
  * @author ActiveViam
  *
  */
-public class DropDatabase {
+public class DropTables {
 	
 	/** Logger */
-	static final Logger LOG = Logger.getLogger(DropDatabase.class.getName());
+	static final Logger LOG = Logger.getLogger(DropTables.class.getName());
 	
 	public static void main(String[] args) throws Exception {
 
@@ -29,12 +29,12 @@ public class DropDatabase {
 	    try(Connection conn = connection.getConnection();
 	    	Statement stmt = conn.createStatement()) {
 
-		    stmt.executeUpdate("DROP TABLE Products");
-			LOG.info("Table 'Products' dropped successfully.");
-		    stmt.executeUpdate("DROP TABLE Trades");
-			LOG.info("Table 'Trades' dropped successfully.");
-		    stmt.executeUpdate("DROP TABLE Risks");
-			LOG.info("Table 'Risks' dropped successfully.");
+		    stmt.executeUpdate("DROP TABLE PRODUCTS");
+			LOG.info("Table 'PRODUCTS' dropped successfully.");
+		    stmt.executeUpdate("DROP TABLE TRADES");
+			LOG.info("Table 'TRADES' dropped successfully.");
+		    stmt.executeUpdate("DROP TABLE RISKS");
+			LOG.info("Table 'RISKS' dropped successfully.");
 		    
 	     } catch(SQLException se) { 
 	        //Handle errors for JDBC 
