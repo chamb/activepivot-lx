@@ -45,9 +45,9 @@ To start the ActivePivot application, launch `com.activeviam.lx.ActivePivotLXSer
 The ActivePivot project comes with a simple portfolio risk management model (trades, products, risks) and a data generator. You can generate a dataset by running `com.activeviam.lx.generator.DataGenerator` and changing options in `src/main/resources/data.properties`.
 
 Copy the generated csv files to the drive shared with the lx docker container, and load them into LeanXCale:
-- LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-PRODUCTS -f /data/lx/products.csv -v -th 20 --column_separator ';'
-- LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-TRADES -f /data/lx/trades.csv -v -th 20 --column_separator ';'
-- LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-RISKS -f /data/lx/risks.csv -v -th 20 --column_separator ';'
+- `LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-PRODUCTS -f /data/lx/products.csv -v -th 20 --column_separator ';'`
+- `LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-TRADES -f /data/lx/trades.csv -v -th 20 --column_separator ';'`
+- `LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-RISKS -f /data/lx/risks.csv -v -th 20 --column_separator ';'`
 
 
 
