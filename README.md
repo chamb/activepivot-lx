@@ -11,7 +11,7 @@ Then connect into the lx container: `docker exec -it CONTAINER /bin/bash` where 
 
 From within the container setup the environment by running `. env.sh` and then launch LeanXcale by running `. runLeanXcale.sh`
 
-To check that the components of the cluster are running run the lx console: `LX-BIN/bin/lxConsole` and type command `3`. You should see a list of started components.
+To check that the components of the cluster are running run the lx console: `lxConsole` and type command `3`. You should see a list of started components.
 
 
 # Setting up ActivePivot
@@ -44,8 +44,10 @@ To start the ActivePivot application, launch `com.activeviam.lx.ActivePivotLXSer
 # Generating a large dataset
 The ActivePivot project comes with a simple portfolio risk management model (trades, products, risks) and a data generator. You can generate a dataset by running `com.activeviam.lx.generator.DataGenerator` and changing options in `src/main/resources/data.properties`.
 
-Copy the generated csv files to the drive shared with the lx docker container, and load them into LeanXCale
-
+Copy the generated csv files to the drive shared with the lx docker container, and load them into LeanXCale:
+- LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-PRODUCTS -f /data/lx/products.csv -v -th 20 --column_separator ';'
+- LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-TRADES -f /data/lx/trades.csv -v -th 20 --column_separator ';'
+- LX-BIN/bin/lxCSVLoad -c 'localhost!44000' -t db-APP-RISKS -f /data/lx/risks.csv -v -th 20 --column_separator ';'
 
 
 
