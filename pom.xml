@@ -19,9 +19,7 @@
 		<jetty.version>9.4.16.v20190411</jetty.version>
 	</properties>
 
-	<dependencyManagement>
-
-		<dependencies>
+	<dependencies>
 
 			<dependency>
 				<groupId>com.activeviam.activepivot</groupId>
@@ -87,71 +85,80 @@
 
 	        <!-- ActiveUI dependencies -->
 	        <dependency>
-	          <groupId>com.activeviam.activeui</groupId>
-	          <artifactId>activeui</artifactId>
-	                <version>${activeui.version}</version>
+				<groupId>com.activeviam.activeui</groupId>
+				<artifactId>activeui</artifactId>
+				<version>${activeui.version}</version>
 	        </dependency>
 
-		</dependencies>
-
-	</dependencyManagement>
-
-	<dependencies>
-
-		<!-- ActivePivot Dependencies -->
-		<dependency>
-			<groupId>com.activeviam.activepivot</groupId>
-			<artifactId>activepivot-server-spring</artifactId>
-		</dependency>
-
-		<!-- Jetty dependencies -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-servlet</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-webapp</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-annotations</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>javax-websocket-server-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-servlet</artifactId>
-		</dependency>
-
-		<!-- LeanXCale elastic driver -->
-		<dependency>
-			<groupId>com.leanxcale</groupId>
-			<artifactId>elasticdriver</artifactId>
-			<version>0.94-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.leanxcale</groupId>
-			<artifactId>i18n</artifactId>
-			<version>0.95-SNAPSHOT</version>
-		</dependency>
 
 
-	    <!-- ActiveUI dependencies -->
-	    <dependency>
-	      <groupId>com.activeviam.activeui</groupId>
-	      <artifactId>activeui</artifactId>
-	    </dependency>
+			<!-- LeanXCale dependencies -->
+			<dependency>
+				<groupId>com.leanxcale</groupId>
+				<artifactId>common</artifactId>
+				<version>0.96-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.leanxcale</groupId>
+				<artifactId>shared</artifactId>
+				<version>0.96-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.leanxcale</groupId>
+				<artifactId>tools</artifactId>
+				<version>0.96-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.leanxcale</groupId>
+				<artifactId>elasticdriver</artifactId>
+				<version>0.96</version>
+			</dependency>
+			<dependency>
+				<groupId>com.leanxcale</groupId>
+				<artifactId>i18n</artifactId>
+				<version>0.96</version>
+			</dependency>
+			<dependency>
+				<groupId>com.leanxcale</groupId>
+				<artifactId>client</artifactId>
+				<version>0.96-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.leanxcale</groupId>
+				<artifactId>kivi-api</artifactId>
+				<version>0.96-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.leanxcale</groupId>
+				<artifactId>kivi-ltm</artifactId>
+				<version>0.96-SNAPSHOT</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>3.4.12</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.8.0-alpha2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>2.11.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>2.11.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>2.11.0</version>
+			</dependency>
 
 	</dependencies>
 

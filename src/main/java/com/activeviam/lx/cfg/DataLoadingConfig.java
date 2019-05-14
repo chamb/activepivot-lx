@@ -7,8 +7,13 @@
 package com.activeviam.lx.cfg;
 
 
-import static com.activeviam.lx.db.DatabaseConnection.*;
-import java.util.Arrays;
+import static com.activeviam.lx.db.DatabaseConnection.DB_URL;
+import static com.activeviam.lx.db.DatabaseConnection.JDBC_DRIVER;
+import static com.activeviam.lx.db.DatabaseConnection.PASS;
+import static com.activeviam.lx.db.DatabaseConnection.USER;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -67,16 +72,20 @@ public class DataLoadingConfig {
 				JDBC_DRIVER, // DRIVER
 				properties,
 				"LeanXcale JDBC Source",
-				2, // pool size
+				8, // pool size
 				20000, // append queue size
 				5000  // append batch size
 		);
-		 
+
 		// Register topics
 		jdbcSource.addTopic(new JDBCTopic("Products", "SELECT * from PRODUCTS"));
-		jdbcSource.addTopic(new JDBCTopic("Trades", "SELECT * from TRADES"));
-		jdbcSource.addTopic(new JDBCTopic("Risks", "SELECT * from RISKS"));
-		
+
+		jdbcSource.addTopic(new JDBCTopic("Trades-0", "SELECT * from TRADES WHERE MOD(ID, 2) = 0"));
+		jdbcSource.addTopic(new JDBCTopic("Trades-1", "SELECT * from TRADES WHERE MOD(ID, 2) = 1"));
+
+		jdbcSource.addTopic(new JDBCTopic("Risks-0", "SELECT * from RISKS WHERE MOD(TRADEID, 2) = 0"));
+		jdbcSource.addTopic(new JDBCTopic("Risks-1", "SELECT * from RISKS WHERE MOD(TRADEID, 2) = 1"));
+
 		return jdbcSource;
     }
 
@@ -93,11 +102,15 @@ public class DataLoadingConfig {
 	    tm.startTransaction();
 		
 		JDBCMessageChannelFactory jdbcChannelFactory = new JDBCMessageChannelFactory(jdbcSource, datastore);
-		IMessageChannel<String, QfsResultSetRow> productChannel = jdbcChannelFactory.createChannel("Products");
-		IMessageChannel<String, QfsResultSetRow> tradeChannel = jdbcChannelFactory.createChannel("Trades");
-		IMessageChannel<String, QfsResultSetRow> riskChannel = jdbcChannelFactory.createChannel("Risks");
 		
-		jdbcSource.fetch(Arrays.asList(productChannel, tradeChannel, riskChannel));
+		List<IMessageChannel<String, QfsResultSetRow>> channels = new ArrayList<>();
+		channels.add(jdbcChannelFactory.createChannel("Products"));
+		channels.add(jdbcChannelFactory.createChannel("Trades-0", "Trades"));
+		channels.add(jdbcChannelFactory.createChannel("Trades-1", "Trades"));
+		channels.add(jdbcChannelFactory.createChannel("Risks-0", "Risks"));
+		channels.add(jdbcChannelFactory.createChannel("Risks-1", "Risks"));
+		
+		jdbcSource.fetch(channels);
 		
 		tm.commitTransaction();
 		
