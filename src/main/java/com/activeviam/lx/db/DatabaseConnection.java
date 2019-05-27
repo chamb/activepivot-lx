@@ -23,8 +23,8 @@ public class DatabaseConnection {
 	public static final String JDBC_DRIVER = "com.leanxcale.jdbc.ElasticDriver";
 	
 	// Connection string
-	public static final String DB_URL = "jdbc:leanxcale:direct://localhost:32772/db;create=true";
-	   
+	public static final String DB_URL = "jdbc:leanxcale:direct://localhost:1529/db;create=true";
+
 	//  Database credentials 
 	public static final String USER = "app"; 
 	public static final String PASS = "app";

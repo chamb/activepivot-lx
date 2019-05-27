@@ -33,9 +33,8 @@ import com.quartetfs.fwk.contributions.impl.ClasspathContributionProvider;
 import com.quartetfs.fwk.monitoring.jmx.impl.JMXEnabler;
 
 /**
- * Spring configuration of the Nano ActivePivot Application services.<br>
- * Some parameters of the Nano Services can be quickly changed by modifying the nano.properties
- * file.
+ * Spring configuration of the ActivePivot Application<br>
+ * Some application parameters can be quickly changed by modifying the data.properties file.
  *
  * @author ActiveViam
  *
@@ -48,7 +47,7 @@ import com.quartetfs.fwk.monitoring.jmx.impl.JMXEnabler;
 		NoSecurityDatastoreServiceConfig.class,
 		DatastoreDescriptionConfig.class,
 		FullAccessBranchPermissionsManagerConfig.class,
-		DataLoadingConfig.class,
+		KiViDataLoadingConfig.class,
 		ActivePivotManagerConfig.class,
 		LocalContentServiceConfig.class,
 		LocalI18nConfig.class,

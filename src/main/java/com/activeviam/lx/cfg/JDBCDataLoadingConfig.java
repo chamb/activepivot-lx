@@ -39,9 +39,9 @@ import com.qfs.util.timing.impl.StopWatch;
  * @author ActiveViam
  *
  */
-public class DataLoadingConfig {
+public class JDBCDataLoadingConfig {
 
-    private static final Logger LOGGER = Logger.getLogger(DataLoadingConfig.class.getSimpleName());
+    private static final Logger LOGGER = Logger.getLogger(JDBCDataLoadingConfig.class.getSimpleName());
 
     
     @Autowired
