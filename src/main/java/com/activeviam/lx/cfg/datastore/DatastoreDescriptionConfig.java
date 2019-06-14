@@ -44,7 +44,7 @@ public class DatastoreDescriptionConfig implements IDatastoreDescriptionConfig {
 	public IStoreDescription products() {
 		
 		return new StoreDescriptionBuilder().withStoreName("Products")
-				.withField("Id", INT).asKeyField()
+				.withField("Id", LONG).asKeyField()
 				.withField("ProductName", STRING)
 				.withField("ProductType", STRING)
 				.withField("UnderlierCode", STRING)
@@ -64,7 +64,7 @@ public class DatastoreDescriptionConfig implements IDatastoreDescriptionConfig {
 		
 		return new StoreDescriptionBuilder().withStoreName("Trades")
 				.withField("Id", LONG).asKeyField()
-				.withField("ProductId", INT)
+				.withField("ProductId", LONG)
 				.withField("ProductQtyMultiplier", DOUBLE)
 				.withField("Desk", STRING)
 				.withField("Book", INT)

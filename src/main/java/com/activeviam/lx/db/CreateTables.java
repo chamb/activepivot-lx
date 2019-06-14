@@ -29,7 +29,7 @@ public class CreateTables {
 	    	try(Statement stmt = conn.createStatement()) {
 
 				stmt.executeUpdate("CREATE TABLE PRODUCTS (\n" + 
-						"  Id INTEGER not NULL,\n" + 
+						"  Id BIGINT not NULL,\n" + 
 						"  ProductName VARCHAR(255),\n" + 
 						"  ProductType VARCHAR(255), \n" + 
 						"  UnderlierCode VARCHAR(255),\n" + 
@@ -48,7 +48,7 @@ public class CreateTables {
 				
 				stmt.executeUpdate("CREATE TABLE TRADES (\n" + 
 						"  Id BIGINT not NULL,\n" + 
-						"  ProductId INTEGER,\n" + 
+						"  ProductId BIGINT,\n" + 
 						"  ProductQtyMultiplier DOUBLE,\n" + 
 						"  Desk VARCHAR(255),\n" + 
 						"  Book INTEGER,\n" + 
@@ -69,7 +69,9 @@ public class CreateTables {
 						"PnlDelta DOUBLE, " + 
 						"Gamma DOUBLE, " + 
 						"Vega DOUBLE, " + 
-						"PnlVega DOUBLE)";
+						"PnlVega DOUBLE, " +
+						"PRIMARY KEY ( TradeId )" + 
+						")";
 				stmt.executeUpdate(createRiskTable);
 				LOG.info("Table 'RISKS' created successfully.");
 				

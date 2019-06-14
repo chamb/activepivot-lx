@@ -4,7 +4,7 @@
  * property of Quartet Financial Systems Limited. Any unauthorized use,
  * reproduction or transfer of this material is strictly prohibited
  */
-package com.activeviam.lx;
+package com.activeviam.lx.kivi;
 
 import java.util.Collection;
 

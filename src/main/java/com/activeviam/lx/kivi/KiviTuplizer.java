@@ -54,49 +54,4 @@ public class KiviTuplizer {
 		return new KiviTuplizer(readers);
 	}
 	
-	
-	public static KiviTuplizer fromStoreZob(IStoreMetadata metadata) {
-		
-		Function<Tuple, Object>[] readers = (Function<Tuple, Object>[]) new Function[] {
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getInteger("ID"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getString("PRODUCTNAME"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getString("PRODUCTTYPE"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getString("UNDERLIERCODE"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getString("UNDERLIERCURRENCY"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getString("UNDERLIERTYPE"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getDouble("UNDERLIERVALUE"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getDouble("PRODUCTBASEMTM"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getDouble("BUMPEDMTMUP"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getDouble("BUMPEDMTMDOWN"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getDouble("THETA"); }
-				},
-				new Function<Tuple, Object>() {
-					@Override public Object apply(Tuple t) { return t.getDouble("RHO"); }
-				}
-		};
-				
-		return new KiviTuplizer(readers);
-	}
-	
 }
