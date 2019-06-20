@@ -10,6 +10,7 @@ package com.activeviam.lx.cfg;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ForkJoinPool;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -77,6 +78,7 @@ public class KiViDataLoadingConfig {
     @DependsOn(value = "startManager")
     public Void loadData() throws Exception {
 
+    	Integer poolSize = env.getProperty("kivi.poolSize", Integer.class, 4);
     	Long chunkSize = env.getProperty("kivi.chunkSize", Long.class, 10000000L);
     	
     	
@@ -101,7 +103,10 @@ public class KiViDataLoadingConfig {
     	});
 
     	// Execute the partial loads in parallel
-		loads.parallelStream().forEach(Load::load);
+    	ForkJoinPool customThreadPool = new ForkJoinPool(poolSize);
+        customThreadPool.submit(
+        		() -> loads.parallelStream().forEach(Load::load)
+        ).get();
 
 		datastore.getTransactionManager().commitTransaction();
 		
